@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Clinio</title>
+    <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="logo-container">
+            <img src="../assets/wlogo.svg" alt="Clinio Logo" class="logo">
+        </div>
+        <button class="btn logout" onclick="handleLogout()">Sair</button>
+    </div>
+    <div class="home-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="home.html">Tela inicial</a></li>
+                    <li><a href="consultas.html">Consultas</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="left-container">
+                <div class="left-container-top">
+                    <header>
+                        <h1>Agendar nova consulta</h1>
+                        <button class="btn green">Nova consulta</button>
+                    </header>
+                </div>
+                <div class="left-container-bottom">
+                    <section class="next-appointment">
+                        <h2>Próxima consulta</h2>
+                        <p>Local: [Local da consulta]</p>
+                        <button class="btn green">Baixar QR Code</button>
+                        <button class="btn red">Desmarcar</button>
+                    </section>
+                </div>
+            </div>
+            <div class="right-container">
+                <h2>Calendário</h2>
+                <!-- Adicione seu calendário aqui -->
+            </div>
+        </div>
+    </div>
+    <script src="../scripts/home.js"></script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+# Backend settings
+/mvnw text eol=lf
+*.cmd text eol=crlf
+
+# Frontend settings
+*.css text eol=lf
+*.js text eol=lf
+*.svg text eol=lf
+
+# Default for all text files
+* text=auto

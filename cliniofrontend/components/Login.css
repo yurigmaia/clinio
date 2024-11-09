@@ -1,0 +1,169 @@
+/* src/components/Login.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+body {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6, p, button, input, label {
+    font-family: 'Montserrat', sans-serif;
+  }
+  /* src/components/Login.css */
+
+.login-right h2 {
+    font-size: 50px; /* Define o tamanho da fonte */
+  }
+  /* src/components/Login.css */
+  /* src/components/Login.css */
+
+.login-left h2 {
+    font-size: 50px; /* Define o tamanho da fonte */
+  }
+  /* src/components/Login.css */
+
+/* src/App.css */
+/* src/components/Login.css */
+
+.login-right p {
+    font-size: 26px;
+  }
+  
+  
+  .logo {
+    height: 50px;
+  }
+  
+  
+.login-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+  }
+  
+  .login-left {
+    width: 1264px; /* Largura fixa para o lado esquerdo */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    padding: 20px;
+  }
+  .logo-container {
+    position: absolute;
+    top: 20px; /* Distância do topo */
+    left: 20px; /* Distância da esquerda */
+  }  
+/* src/components/Login.css */
+
+.login-right {
+    width: 656px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(30deg, #25472B, #396B42); /* Adiciona o gradiente */
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .logo {
+    margin-bottom: 20px;
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 300px;
+    align-items: center;
+  }
+  
+ /* src/components/Login.css */
+
+.form-group {
+    width: 100%;
+    margin-bottom: 20px; /* Espaço entre os campos */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centraliza os campos horizontalmente */
+  }
+  
+  .form-group label {
+    margin-bottom: 10px;
+    font-size: 18px; /* Aumenta o tamanho da fonte do rótulo */
+    text-align: center; /* Centraliza o texto do rótulo */
+  }
+  
+  .form-group input {
+    width: 450px; /* Ajusta a largura dos campos */
+    height: 41px;
+    padding: 15px; /* Aumenta o padding para um campo maior */
+    font-size: 20px; /* Aumenta o tamanho da fonte */
+    border: 1px solid #f0f0f0;
+    border-radius: 5px;
+    background-color: #f0f0f0; /* Fundo cinza claro */
+  }
+  
+  input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #777; /* Placeholder cinza mais escuro */
+  }
+  
+/* src/components/Login.css */
+
+button {
+    height: 70px; /* Define a altura do botão */
+    width: 250px;
+    font-size: 20px; /* Aumenta o tamanho da fonte */
+    padding: 0 0px; /* Ajusta o padding horizontal */
+    background-color: #396B42;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #396B42;
+  }
+  
+  
+  .login-right button {
+    height: 70px;
+    width: 200px;
+    background-color: white;
+    color: #396B42;
+    margin-top: 20px;
+  }
+  
+  .login-right button:hover {
+    background-color: #f2f2f2;
+  }
+  /* src/components/Login.css */
+
+input[type="text"], input[type="password"] {
+    background-color: #f0f0f0; /* Cor de fundo cinza */
+    color: #333; /* Cor do texto */
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 50px;
+  }
+  
+  input[type="text"]::placeholder, input[type="password"]::placeholder {
+    color: #777; /* Cor cinza mais escuro para o placeholder */
+  }
+  
+  input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border-color: #396B42; /* Bordas verdes ao focar no campo */
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    margin-bottom: 5px;
+  }
+  
