@@ -11,11 +11,11 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .login-right h2 {
-    font-size: 50px;
+    font-size: 3rem;
 }
 
 .login-left h2 {
-    font-size: 50px;
+    font-size: 3rem;
 }
 
 .login-right p {
@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(30deg, #25472B, #396B42);
+    background: linear-gradient(30deg, #0a7647, #0c9c5e);
     color: white;
     padding: 0; /* Ajuste o padding para centralizar o conteúdo */
     text-align: center;
@@ -115,7 +115,7 @@ button {
     width: 250px;
     font-size: 20px;
     padding: 0 0px;
-    background-color: #396B42;
+    background-color: #0c9c5e;
     color: white;
     border: none;
     cursor: pointer;

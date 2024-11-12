@@ -9,7 +9,7 @@ document.getElementById('cpf').addEventListener('input', function(e) {
 
     // Valida o CPF e exibe a mensagem de erro se for inválido
     const cpfError = document.getElementById('cpf-error');
-    if (!isValidCPF(cpf)) {
+    if (cpf.length === 14 && !isValidCPF(cpf)) {
         cpfError.style.display = 'inline';
     } else {
         cpfError.style.display = 'none';

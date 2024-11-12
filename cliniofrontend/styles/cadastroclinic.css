@@ -57,7 +57,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(30deg, #25472B, #396B42);
+    background: linear-gradient(30deg, #032f30, #065758);
     color: white;
     padding: 0; /* Ajuste o padding para centralizar o conteúdo */
     text-align: center;
@@ -115,7 +115,7 @@ button {
     width: 250px;
     font-size: 20px;
     padding: 0 0px;
-    background-color: #396B42;
+    background-color: #065758;
     color: white;
     border: none;
     cursor: pointer;
@@ -124,7 +124,7 @@ button {
 }
 
 button:hover {
-    background-color: #396B42;
+    background-color: #033435;
 }
 
 .login-right button {

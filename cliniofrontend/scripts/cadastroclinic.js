@@ -12,16 +12,17 @@ document.getElementById('cnpj').addEventListener('input', function(e) {
     const cnpjError = document.getElementById('cnpj-error');
     if (cnpj.length === 18 && !isValidCNPJ(cnpj)) {
         cnpjError.style.display = 'inline';
-        cnpjError.innerText = 'CNPJ inválido';
     } else {
         cnpjError.style.display = 'none';
     }
 });
 
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('cadastroForm').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    const nome = document.getElementById('nome').value;
     const cnpj = document.getElementById('cnpj').value;
+    const email = document.getElementById('email').value;
     const password = document.getElementById('password').value;
 
     if (!isValidCNPJ(cnpj)) {
@@ -29,36 +30,25 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
         return;
     }
 
-    const user = { cnpj, password };
+    const clinica = { nome, cnpj, email, password };
 
-    fetch('http://localhost:8080/api/clinicas/login', {
+    fetch('http://localhost:8080/api/auth/cadastro/clinica', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(clinica)
     })
     .then(response => {
-        if (response.ok) return response.json();
-        throw new Error('Erro ao fazer login');
+        if (response.ok) return response.text();
+        throw new Error('Erro ao cadastrar clínica');
     })
-    .then(data => {
-        const messageElement = document.getElementById('message');
-        if (data.message === 'Login bem-sucedido') {
-            window.location.href = '/cliniofrontend/pages/home.html'; // Redireciona para a tela home
-        } else {
-            messageElement.innerText = data.message; // Exibe a mensagem de erro
-            messageElement.style.color = 'red'; // Define a cor da mensagem de erro como vermelha
-        }
+    .then(message => {
+        alert('Cadastro realizado com sucesso!');
+        window.location.href = 'loginclinic.html';
     })
     .catch(error => {
-        const messageElement = document.getElementById('message');
-        if (messageElement) {
-            messageElement.innerText = error.message;
-            messageElement.style.color = 'red'; // Define a cor da mensagem de erro como vermelha
-        } else {
-            alert(error.message);
-        }
+        alert(error.message);
     });
 });
 
