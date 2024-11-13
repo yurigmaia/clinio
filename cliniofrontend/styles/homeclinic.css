@@ -247,8 +247,12 @@ form button[type="submit"] {
     background-color: #065758;
     color: white;
     margin-top: 1rem;
-    border-width: 0px;
     border-radius: 50px;
+    border-width: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 20%; /* Ajusta a largura do botão */
 }
 
 form button[type="submit"]:hover {

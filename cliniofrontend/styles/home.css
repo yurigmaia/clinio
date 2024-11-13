@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .top-bar {
-    background-color: #1C311F;
+    background-color: #085131;
     color: white;
     display: flex;
     justify-content: space-between;
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 
 .sidebar {
     width: 12%;
-    background-color: #25472B;
+    background-color: #0a7647;
     color: white;
     display: flex;
     flex-direction: column;
@@ -160,7 +160,7 @@ header .btn.green {
 }
 
 .btn.green {
-    background-color: #396B42;
+    background-color: #0a7647;
     margin-left: 30px;
     color: white;
 }
@@ -267,7 +267,7 @@ header .btn.green {
 }
 
 form button[type="submit"] {
-    background-color: #28a745;
+    background-color: #0c9c5e;
     color: white;
     margin-top: 1rem;
     border-radius: 50px;
@@ -279,5 +279,5 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #218838;
+    background-color: #08633c;
 }
