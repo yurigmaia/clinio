@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Clinio</title>
+    <link rel="stylesheet" href="../styles/home.css">
+</head>
+<body>
+    <!-- Botão para abrir o modal -->
+    <button id="openModalBtn">Nova Consulta</button>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agendar Nova Consulta</h2>
+            <form id="consultaForm">
+                <div class="form-group">
+                    <label for="consultorio">Consultório</label>
+                    <select id="consultorio" name="consultorio" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="local">Local</label>
+                    <input type="text" id="local" name="local" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="horario">Horário</label>
+                    <input type="datetime-local" id="horario" name="horario" required>
+                </div>
+                <div class="form-group">
+                    <label for="medico">Médico</label>
+                    <select id="medico" name="medico" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="tipoConsulta">Tipo de Consulta</label>
+                    <input type="text" id="tipoConsulta" name="tipoConsulta" required>
+                </div>
+                <button type="submit">Agendar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../scripts/home.js"></script>
+</body>
+</html>

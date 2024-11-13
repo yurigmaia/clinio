@@ -11,15 +11,15 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .login-right h2 {
-    font-size: 50px;
+    font-size: 3rem;
 }
 
 .login-left h2 {
-    font-size: 50px;
+    font-size: 3rem;
 }
 
 .login-right p {
-    font-size: 26px;
+    font-size: 27px;
     justify-content: baseline;
 }
 

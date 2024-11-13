@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Clinio</title>
     <link rel="stylesheet" href="../styles/home.css">
-    <link rel="icon" href="../assets/icon.svg" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
 </head>
 <body>
     <div class="top-bar">
@@ -31,7 +31,7 @@
                 <div class="left-container-top">
                     <header>
                         <h1>Agendar nova consulta</h1>
-                        <button class="btn green">Nova consulta</button>
+                        <button class="btn green" id="openModalBtn">Nova consulta</button>
                     </header>
                 </div>
                 <div class="left-container-bottom">
@@ -49,6 +49,54 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Agendar Nova Consulta</h2>
+            <form id="consultaForm">
+                <div class="form-group">
+                    <label for="medico">Médico</label>
+                    <select id="medico" name="medico" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="paciente">Paciente</label>
+                    <input type="text" id="paciente" name="paciente" required>
+                </div>
+                <div class="form-group">
+                    <label for="dia">Dia</label>
+                    <input type="date" id="dia" name="dia" required>
+                </div>
+                <div class="form-group">
+                    <label for="horario">Horário</label>
+                    <input type="time" id="horario" name="horario" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status</label>
+                    <input type="text" id="status" name="status" required>
+                </div>
+                <div class="form-group">
+                    <label for="observacoes">Observações</label>
+                    <input type="text" id="observacoes" name="observacoes">
+                </div>
+                <div class="form-group">
+                    <label for="tipoConsulta">Tipo de Consulta</label>
+                    <input type="text" id="tipoConsulta" name="tipoConsulta" required>
+                </div>
+                <div class="form-group">
+                    <label for="especialidade">Especialidade</label>
+                    <input type="text" id="especialidade" name="especialidade" required>
+                </div>
+                <div class="form-group">
+                    <label for="valorConsulta">Valor da Consulta</label>
+                    <input type="number" step="0.01" id="valorConsulta" name="valorConsulta" required>
+                </div>
+                <button type="submit">Agendar</button>
+            </form>
+        </div>
+    </div>
+
     <script src="../scripts/home.js"></script>
 </body>
 </html>

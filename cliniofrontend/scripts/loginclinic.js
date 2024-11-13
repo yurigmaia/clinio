@@ -31,7 +31,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     const user = { cnpj, password };
 
-    fetch('http://localhost:8080/api/clinicas/login', {
+    fetch('http://localhost:8080/api/auth/login/clinica', {  // Corrigi aqui
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -45,7 +45,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     .then(data => {
         const messageElement = document.getElementById('message');
         if (data.message === 'Login bem-sucedido') {
-            window.location.href = '/cliniofrontend/pages/home.html'; // Redireciona para a tela home
+            window.location.href = '/cliniofrontend/pages/homeclinic.html'; // Redireciona para a tela home
         } else {
             messageElement.innerText = data.message; // Exibe a mensagem de erro
             messageElement.style.color = 'red'; // Define a cor da mensagem de erro como vermelha

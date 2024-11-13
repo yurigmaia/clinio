@@ -29,7 +29,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     const user = { cpf, password };
 
-    fetch('http://localhost:8080/api/auth/login', {
+    fetch('http://localhost:8080/api/auth/login/usuario', { // Corrigir URL aqui
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

@@ -11,13 +11,13 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .top-bar {
-    background-color: #1C311F;
+    background-color: #032f30;
     color: white;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Ajuste o padding conforme necessário */
-    height: 9vh; /* Ocupa 9% da altura da tela */
+    padding: 0 20px;
+    height: 9vh;
 }
 
 .logo-container {
@@ -26,14 +26,14 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .logo {
-    height: 40px; /* Ajuste a altura conforme necessário */
-    width: auto; /* Mantém a proporção da imagem */
+    height: 40px;
+    width: auto;
 }
 
 .btn.logout {
-    background-color: white; /* Preenchimento branco */
-    color: #1C311F; /* Cor do texto */
-    border: 1px solid #1C311F; /* Borda correspondente */
+    background-color: white;
+    color: #1C311F;
+    border: 1px solid #1C311F;
     padding: 10px 50px;
     border-radius: 50px;
     cursor: pointer;
@@ -41,19 +41,19 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .btn.logout:hover {
-    background-color: #f2f2f2; /* Cor de fundo ao passar o mouse */
-    color: #1C311F; /* Cor do texto ao passar o mouse */
+    background-color: #f2f2f2;
+    color: #1C311F;
 }
 
 .home-container {
     display: flex;
     width: 100%;
-    height: calc(100vh - 9vh); /* Desconta a altura da top-bar */
+    height: calc(100vh - 9vh);
 }
 
 .sidebar {
     width: 12%;
-    background-color: #25472B;
+    background-color: #065758;
     color: white;
     display: flex;
     flex-direction: column;
@@ -105,13 +105,14 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .right-container {
-    width: 400px;
-    height: 550px;
+    width: 100%;
+    max-width: 600px;
     background-color: #E4E4E4;
-    border-radius: 50px;
+    border-radius: 25px;
     text-align: center;
     margin-right: 10px;
     padding: 20px;
+    overflow-y: auto; /* Permite rolagem se o conteúdo for muito grande */
 }
 
 header {
@@ -119,18 +120,24 @@ header {
 }
 
 header h1 {
-    font-size: 50px; /* Aumentar o tamanho da fonte */
-    margin-bottom: 10px; /* Espaço abaixo do título */
+    font-size: 35px;
+    margin-bottom: 10px;
     margin-left: 30px;
 }
 
-header .btn.green {
-    margin-top: 10px; /* Espaço entre o título e o botão */
+header .btn.blue {
+    margin-top: 10px;
     margin-left: 30px;
+    background-color: #065758;
+    color: white;
+}
+
+header .btn.blue:hover {
+    background-color: #04393a;
 }
 
 .next-appointment h2 {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: 30px;
     font-size: 30px;
 }
@@ -141,11 +148,11 @@ header .btn.green {
 }
 
 .next-appointment .btn {
-    margin-right: 10px; /* Espaço entre os botões */
+    margin-right: 10px;
 }
 
 .right-container h2 {
-    font-size: 25px; /* Tamanho da fonte */
+    font-size: 25px;
     margin-bottom: 20px;
 }
 
@@ -189,9 +196,7 @@ header .btn.green {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    overflow: hidden; /* Evite a barra de rolagem no body */
 }
 
 .modal-content {
@@ -239,13 +244,45 @@ header .btn.green {
 }
 
 form button[type="submit"] {
-    background-color: #28a745;
+    background-color: #065758;
     color: white;
     margin-top: 1rem;
+    border-width: 0px;
     border-radius: 50px;
-    padding: 100px, 200px;
 }
 
 form button[type="submit"]:hover {
-    background-color: #218838;
+    background-color: #043a3b;
+}
+.btn.blue {
+    background-color: #065758;
+    color: white;
+    padding: 10px 50px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn.blue:hover {
+    background-color: #155a9b;
+}
+
+
+/* Estilo para a tabela de consultas agendadas */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
 }
