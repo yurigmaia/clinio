@@ -55,7 +55,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Agendar Nova Consulta</h2>
-            <form id="consultaForm">
+            <form id="consultaForm" class="horizontal-form">
                 <div class="form-group">
                     <label for="medico">Médico</label>
                     <select id="medico" name="medico" required></select>
@@ -73,24 +73,20 @@
                     <input type="time" id="horario" name="horario" required>
                 </div>
                 <div class="form-group">
-                    <label for="status">Status</label>
-                    <input type="text" id="status" name="status" required>
-                </div>
-                <div class="form-group">
                     <label for="observacoes">Observações</label>
                     <input type="text" id="observacoes" name="observacoes">
                 </div>
                 <div class="form-group">
                     <label for="tipoConsulta">Tipo de Consulta</label>
-                    <input type="text" id="tipoConsulta" name="tipoConsulta" required>
+                    <select id="tipoConsulta" name="tipoConsulta" required></select>
                 </div>
                 <div class="form-group">
-                    <label for="especialidade">Especialidade</label>
-                    <input type="text" id="especialidade" name="especialidade" required>
+                    <label for="convenio">Convênio</label>
+                    <select id="convenio" name="convenio" required></select>
                 </div>
                 <div class="form-group">
-                    <label for="valorConsulta">Valor da Consulta</label>
-                    <input type="number" step="0.01" id="valorConsulta" name="valorConsulta" required>
+                    <label for="idConvenio">ID</label>
+                    <input type="text" id="idConvenio" name="idConvenio" required>
                 </div>
                 <button type="submit">Agendar</button>
             </form>

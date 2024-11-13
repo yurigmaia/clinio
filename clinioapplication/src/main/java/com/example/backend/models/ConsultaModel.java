@@ -27,6 +27,10 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
     private String especialidade;
     private Double valorConsulta;
 
+    // Novos campos
+    private String convenio;
+    private String idConvenio;
+
     public UUID getIdConsulta() {
         return idConsulta;
     }
@@ -105,5 +109,21 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
 
     public void setValorConsulta(Double valorConsulta) {
         this.valorConsulta = valorConsulta;
+    }
+
+    public String getConvenio() {
+        return convenio;
+    }
+
+    public void setConvenio(String convenio) {
+        this.convenio = convenio;
+    }
+
+    public String getIdConvenio() {
+        return idConvenio;
+    }
+
+    public void setIdConvenio(String idConvenio) {
+        this.idConvenio = idConvenio;
     }
 }

@@ -105,13 +105,14 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .right-container {
-    width: 400px;
-    height: 550px;
+    width: 100%;
+    max-width: 400px;
     background-color: #E4E4E4;
-    border-radius: 50px;
+    border-radius: 25px;
     text-align: center;
     margin-right: 10px;
     padding: 20px;
+    overflow-y: auto;
 }
 
 header {
@@ -178,6 +179,7 @@ header .btn.green {
 }
 
 /* Estilos para o Modal */
+/* Estilos para o Modal */
 .modal {
     display: none;
     justify-content: center;
@@ -189,19 +191,17 @@ header .btn.green {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0);
     background-color: rgba(0,0,0,0.4);
-    overflow: hidden; /* Evite a barra de rolagem no body */
 }
 
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 5% auto;
     padding: 2rem;
     border: 0px solid #888;
     border-radius: 25px; 
     width: 80%;
-    max-width: 500px;
+    max-width: 800px;
     text-align: center;
 }
 
@@ -219,7 +219,14 @@ header .btn.green {
     cursor: pointer;
 }
 
+.horizontal-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .form-group {
+    flex: 0 0 48%; /* Ajusta a largura dos campos para 48%, com 4% de margem */
     margin-bottom: 1rem;
     text-align: left;
 }
@@ -230,12 +237,33 @@ header .btn.green {
     font-weight: bold;
 }
 
+/* Estilo para caixas de entrada cinzas, arredondadas e com mesmo tamanho */
 .form-group input,
 .form-group select {
-    width: calc(100% - 2rem);
-    padding: 0.5rem;
+    width: 100%; /* Mesma largura para todos */
+    padding: 0.75rem; /* Ajuste o padding conforme necessário */
     border: 1px solid #ccc;
-    border-radius: 0.25rem;
+    border-radius: 10px; /* Deixa as bordas arredondadas */
+    background-color: #f2f2f2; /* Cor de fundo cinza */
+    box-sizing: border-box; /* Inclui padding e border no tamanho do elemento */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none; /* Remove o contorno ao focar */
+    border-color: #1C311F; /* Muda a cor da borda ao focar */
+}
+
+.horizontal-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.form-group {
+    flex: 0 0 48%; /* Ajusta a largura dos campos para 48%, com 4% de margem */
+    margin-bottom: 1rem;
+    text-align: left;
 }
 
 form button[type="submit"] {
@@ -243,7 +271,11 @@ form button[type="submit"] {
     color: white;
     margin-top: 1rem;
     border-radius: 50px;
-    padding: 100px, 200px;
+    border-width: 0;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 20%; /* Ajusta a largura do botão */
 }
 
 form button[type="submit"]:hover {

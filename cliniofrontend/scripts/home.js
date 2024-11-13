@@ -12,7 +12,9 @@ document.addEventListener('DOMContentLoaded', function() {
     function openModal() {
         modal.style.display = 'flex';
         carregarMedicos(); // Carregar médicos quando o modal abrir
-        carregarConsultorios(); // Carregar consultórios quando o modal abrir
+        carregarTiposConsulta(); // Carregar tipos de consulta quando o modal abrir
+        carregarConvenios(); // Carregar convênios quando o modal abrir
+        carregarHorarios(); // Carregar horários quando o modal abrir
     }
 
     // Função para fechar o modal
@@ -35,7 +37,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função de logout
     function handleLogout() {
-        // Implementação do logout (por exemplo, limpeza de tokens, redirecionamento)
         window.location.href = '/cliniofrontend/pages/login.html';
     }
 
@@ -50,23 +51,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const paciente = document.getElementById('paciente').value;
         const dia = document.getElementById('dia').value;
         const horario = document.getElementById('horario').value;
-        const status = document.getElementById('status').value;
         const observacoes = document.getElementById('observacoes').value;
         const tipoConsulta = document.getElementById('tipoConsulta').value;
-        const especialidade = document.getElementById('especialidade').value;
-        const valorConsulta = parseFloat(document.getElementById('valorConsulta').value);
+        const convenio = document.getElementById('convenio').value;
+        const idConvenio = document.getElementById('idConvenio').value;
 
-        const consulta = {
-            medico,
-            paciente,
-            dia,
-            horario,
-            status,
-            observacoes,
-            tipoConsulta,
-            especialidade,
-            valorConsulta
-        };
+        const consulta = { medico, paciente, dia, horario, observacoes, tipoConsulta, convenio, idConvenio };
 
         fetch('http://localhost:8080/api/consultas/agendar', {
             method: 'POST',
@@ -76,48 +66,18 @@ document.addEventListener('DOMContentLoaded', function() {
             body: JSON.stringify(consulta)
         })
         .then(response => {
-            if (response.ok) return response.text();
+            if (response.ok) return response.json();
             throw new Error('Erro ao agendar consulta');
         })
-        .then(message => {
+        .then(data => {
             alert('Consulta agendada com sucesso!');
-            generateQRCode(consulta); // Gerar QR Code após agendar a consulta
-            closeModal(); // Fechar o modal após agendar a consulta
+            consultaForm.reset();
+            modal.style.display = 'none';
         })
         .catch(error => {
             alert(error.message);
         });
     });
-
-    // Função para carregar consultórios
-    function carregarConsultorios() {
-        fetch('http://localhost:8080/api/clinicas')
-            .then(response => response.json())
-            .then(data => {
-                const consultorioSelect = document.getElementById('consultorio');
-                const localInput = document.getElementById('local');
-
-                consultorioSelect.innerHTML = '';
-                data.forEach(consultorio => {
-                    const option = document.createElement('option');
-                    option.value = consultorio.id;
-                    option.text = consultorio.nome;
-                    consultorioSelect.appendChild(option);
-                });
-
-                // Setar o local automaticamente ao selecionar um consultório
-                consultorioSelect.addEventListener('change', function() {
-                    const consultorioSelecionado = data.find(consultorio => consultorio.id == this.value);
-                    localInput.value = consultorioSelecionado.endereco;
-                });
-
-                // Setar o local inicialmente
-                if (data.length > 0) {
-                    localInput.value = data[0].endereco;
-                }
-            })
-            .catch(error => console.error('Erro ao carregar consultórios:', error));
-    }
 
     // Função para carregar médicos
     function carregarMedicos() {
@@ -125,28 +85,84 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 const medicoSelect = document.getElementById('medico');
-
-                medicoSelect.innerHTML = '';
+                medicoSelect.innerHTML = '<option value="">Selecione um médico</option>';
                 data.forEach(medico => {
                     const option = document.createElement('option');
                     option.value = medico.id;
-                    option.text = `${medico.nome} - ${medico.especialidade}`;
+                    option.textContent = medico.nome;
                     medicoSelect.appendChild(option);
                 });
             })
             .catch(error => console.error('Erro ao carregar médicos:', error));
     }
 
-    // Função para gerar QR Code
-    function generateQRCode(consulta) {
-        const qrData = JSON.stringify(consulta);
-        const qrCodeContainer = document.createElement('div');
-        qrCodeContainer.id = 'qrCodeContainer';
-        document.body.appendChild(qrCodeContainer);
-
-        QRCode.toCanvas(document.getElementById('qrCodeContainer'), qrData, function (error) {
-            if (error) console.error(error);
-            console.log('QR Code gerado com sucesso!');
-        });
+    // Função para carregar tipos de consulta
+    function carregarTiposConsulta() {
+        fetch('http://localhost:8080/api/tiposconsulta')
+            .then(response => response.json())
+            .then(data => {
+                const tipoConsultaSelect = document.getElementById('tipoConsulta');
+                tipoConsultaSelect.innerHTML = '<option value="">Selecione um tipo de consulta</option>';
+                data.forEach(tipo => {
+                    const option = document.createElement('option');
+                    option.value = tipo.id;
+                    option.textContent = tipo.nome;
+                    tipoConsultaSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar tipos de consulta:', error));
     }
+
+    // Função para carregar convênios
+    function carregarConvenios() {
+        fetch('http://localhost:8080/api/convenios')
+            .then(response => response.json())
+            .then(data => {
+                const convenioSelect = document.getElementById('convenio');
+                convenioSelect.innerHTML = '<option value="">Selecione um convênio</option>';
+                data.forEach(convenio => {
+                    const option = document.createElement('option');
+                    option.value = convenio.id;
+                    option.textContent = convenio.nome;
+                    convenioSelect.appendChild(option);
+                });
+            })
+            .catch(error => console.error('Erro ao carregar convênios:', error));
+    }
+
+    // Função para carregar horários
+    function carregarHorarios() {
+        const horarioSelect = document.getElementById('horario');
+        horarioSelect.innerHTML = '<option value="">Selecione um horário</option>';
+        for (let hour = 8; hour <= 21; hour++) {
+            for (let minute = 0; minute < 60; minute += 30) {
+                const option = document.createElement('option');
+                option.value = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                option.textContent = `${hour.toString().padStart(2, '0')}:${minute.toString().padStart(2, '0')}`;
+                horarioSelect.appendChild(option);
+            }
+        }
+    }
+
+    // Função para carregar consultas agendadas
+    function carregarConsultas() {
+        fetch('http://localhost:8080/api/consultas')
+            .then(response => response.json())
+            .then(data => {
+                const consultasTableBody = document.getElementById('consultasTable').getElementsByTagName('tbody')[0];
+                consultasTableBody.innerHTML = ''; // Limpar a tabela antes de adicionar novas linhas
+                data.forEach(consulta => {
+                    const row = consultasTableBody.insertRow();
+                    row.insertCell(0).textContent = consulta.medico;
+                    row.insertCell(1).textContent = consulta.paciente;
+                    row.insertCell(2).textContent = consulta.dia;
+                    row.insertCell(3).textContent = consulta.horario;
+                    row.insertCell(4).textContent = consulta.especialidade;
+                });
+            })
+            .catch(error => console.error('Erro ao carregar consultas:', error));
+    }
+
+    // Chamar a função ao carregar a página
+    carregarConsultas();
 });
