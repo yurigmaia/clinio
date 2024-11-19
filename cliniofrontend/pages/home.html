@@ -18,24 +18,24 @@
     <div class="home-container">
         <!-- Sidebar -->
         <div class="sidebar">
+            <!-- Informações do paciente -->
+            <div class="patient-info">
+                <h3>Bem-vindo(a),</h3>
+                <h3 id="patient-name">João Silva</h3>
+                <p id="patient-cpf">CPF: 123.456.789-00</p>
+            </div>
+        
+            <!-- Navegação -->
             <nav>
                 <ul>
-                    <li><a href="home.html">Tela inicial</a></li>
-                    <li><a href="consultas.html">Consultas</a></li>
+                    <a class="btn sidebar" href="home.html">Tela inicial</a>
+                    <a class="btn sidebar" href="consultas.html">Consultas</a>
                 </ul>
-                <!-- Novo link de página de configuração -->
+                <!-- Grupo de botões inferior -->
                 <ul class="sidebar-bottom">
-                    <li><a href="configuracoes.html">Configurações</a></li>
+                    <a class="btn sidebar" href="configuracoes.html">Configurações</a>
                 </ul>
             </nav>
-            <!-- Informações do Paciente -->
-            <div class="patient-info">
-                <img id="patient-photo" src="default-photo.png" alt="Foto do Paciente" class="patient-photo">
-                <input type="file" id="photo-upload" accept="image/*" class="photo-upload">
-                <p id="patient-name">Nome: [Nome do Paciente]</p>
-                <p id="patient-cpf">CPF: [CPF do Paciente]</p>
-                <p id="patient-phone">Telefone: [Telefone do Paciente]</p>
-            </div>
         </div>
         
 
