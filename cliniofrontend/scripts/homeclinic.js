@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const closeBtn = medicoModal.getElementsByClassName('close')[0];
     const cadastroMedicoForm = document.getElementById('cadastroMedicoForm');
     const consultasTableBody = document.getElementById('consultasTable').getElementsByTagName('tbody')[0];
+    const upcomingConsultasTableBody = document.getElementById('upcomingConsultasTable').getElementsByTagName('tbody')[0];
     const logoutBtn = document.querySelector('.btn.logout');
 
     // Abrir Modal de Cadastro de Médico
@@ -58,14 +59,32 @@ document.addEventListener('DOMContentLoaded', function() {
         fetch('http://localhost:8080/api/consultas')
             .then(response => response.json())
             .then(data => {
+                const agora = new Date();
+                const proximaHora = new Date(agora.getFullYear(), agora.getMonth(), agora.getDate(), agora.getHours() + 1, 0, 0);
+
                 consultasTableBody.innerHTML = ''; // Limpar a tabela antes de adicionar novas linhas
+                upcomingConsultasTableBody.innerHTML = ''; // Limpar a tabela de próximas consultas
+
                 data.forEach(consulta => {
+                    const consultaData = new Date(consulta.dia + 'T' + consulta.horario);
+
+                    // Adicionar todas as consultas agendadas à tabela de consultas
                     const row = consultasTableBody.insertRow();
                     row.insertCell(0).textContent = consulta.medico;
                     row.insertCell(1).textContent = consulta.paciente;
                     row.insertCell(2).textContent = consulta.dia;
                     row.insertCell(3).textContent = consulta.horario;
                     row.insertCell(4).textContent = consulta.especialidade;
+
+                    // Adicionar consultas da próxima hora à tabela de próximas consultas
+                    if (consultaData.getTime() === proximaHora.getTime()) {
+                        const upcomingRow = upcomingConsultasTableBody.insertRow();
+                        upcomingRow.insertCell(0).textContent = consulta.medico;
+                        upcomingRow.insertCell(1).textContent = consulta.paciente;
+                        upcomingRow.insertCell(2).textContent = consulta.dia;
+                        upcomingRow.insertCell(3).textContent = consulta.horario;
+                        upcomingRow.insertCell(4).textContent = consulta.especialidade;
+                    }
                 });
             })
             .catch(error => console.error('Erro ao carregar consultas:', error));
@@ -73,7 +92,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Função para o botão Sair
     function handleLogout() {
-        // Implementação do logout (por exemplo, limpeza de tokens, redirecionamento)
         window.location.href = '/cliniofrontend/pages/login.html';
     }
 
@@ -82,4 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Chamar a função ao carregar a página
     carregarConsultas();
+
+    // Atualizar as próximas consultas a cada minuto
+    setInterval(carregarConsultas, 60000);
 });

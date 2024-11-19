@@ -1,26 +1,27 @@
 package com.example.backend.models;
 
-import jakarta.persistence.Entity;
-
 import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.UUID;
 
 @Entity
-public class Medico {
+@Table(name = "TB_MEDICOS")
+public class Medico implements Serializable {
+    public static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID idMedico;
+
     private String nome;
     private String especialidade;
 
-    // Getters e Setters
-
-    public Long getId() {
-        return id;
+    public UUID getIdMedico() {
+        return idMedico;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setIdMedico(UUID idMedico) {
+        this.idMedico = idMedico;
     }
 
     public String getNome() {

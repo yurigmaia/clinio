@@ -23,8 +23,21 @@
                     <li><a href="home.html">Tela inicial</a></li>
                     <li><a href="consultas.html">Consultas</a></li>
                 </ul>
+                <!-- Novo link de página de configuração -->
+                <ul class="sidebar-bottom">
+                    <li><a href="configuracoes.html">Configurações</a></li>
+                </ul>
             </nav>
+            <!-- Informações do Paciente -->
+            <div class="patient-info">
+                <img id="patient-photo" src="default-photo.png" alt="Foto do Paciente" class="patient-photo">
+                <input type="file" id="photo-upload" accept="image/*" class="photo-upload">
+                <p id="patient-name">Nome: [Nome do Paciente]</p>
+                <p id="patient-cpf">CPF: [CPF do Paciente]</p>
+                <p id="patient-phone">Telefone: [Telefone do Paciente]</p>
+            </div>
         </div>
+        
 
         <!-- Main Content -->
         <div class="main-content">
@@ -45,13 +58,27 @@
                 </div>
             </div>
             <div class="right-container">
-                <h2>Calendário</h2>
-                <!-- Adicione seu calendário aqui -->
+                <h2>Consultas Agendadas</h2>
+                <table id="consultasTable">
+                    <thead>
+                        <tr>
+                            <th>Médico</th>
+                            <th>Paciente</th>
+                            <th>Dia</th>
+                            <th>Horário</th>
+                            <th>Especialidade</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- As linhas da tabela serão adicionadas dinamicamente -->
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
-    <!-- Modal -->
+    <!-- Modal de Agendamento -->
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -90,6 +117,49 @@
                     <input type="text" id="idConvenio" name="idConvenio" required>
                 </div>
                 <button type="submit">Agendar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Consulta</h2>
+            <form id="editForm" class="horizontal-form">
+                <div class="form-group">
+                    <label for="editMedico">Médico</label>
+                    <select id="editMedico" name="medico" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="editPaciente">Paciente</label>
+                    <input type="text" id="editPaciente" name="paciente" required>
+                </div>
+                <div class="form-group">
+                    <label for="editDia">Dia</label>
+                    <input type="date" id="editDia" name="dia" required>
+                </div>
+                <div class="form-group">
+                    <label for="editHorario">Horário</label>
+                    <input type="time" id="editHorario" name="horario" required>
+                </div>
+                <div class="form-group">
+                    <label for="editObservacoes">Observações</label>
+                    <input type="text" id="editObservacoes" name="observacoes">
+                </div>
+                <div class="form-group">
+                    <label for="editTipoConsulta">Tipo de Consulta</label>
+                    <select id="editTipoConsulta" name="tipoConsulta" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="editConvenio">Convênio</label>
+                    <select id="editConvenio" name="convenio" required></select>
+                </div>
+                <div class="form-group">
+                    <label for="editIdConvenio">ID</label>
+                    <input type="text" id="editIdConvenio" name="idConvenio" required>
+                </div>
+                <button type="submit">Salvar</button>
             </form>
         </div>
     </div>

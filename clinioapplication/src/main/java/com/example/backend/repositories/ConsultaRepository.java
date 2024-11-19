@@ -11,5 +11,6 @@ import java.util.UUID;
 
 @Repository
 public interface ConsultaRepository extends JpaRepository<ConsultaModel, UUID> {
-    Optional<ConsultaModel> findByDiaAndHorario(LocalDate dia, LocalTime horario);
+    boolean existsByMedicoAndDiaAndHorario(String medico, LocalDate dia, LocalTime horario);
+    boolean existsByPacienteAndDiaAndHorario(String paciente, LocalDate dia, LocalTime horario);
 }

@@ -21,13 +21,9 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
     private String paciente;
     private LocalDate dia;
     private LocalTime horario;
-    private String status;
     private String observacoes;
     private String tipoConsulta;
     private String especialidade;
-    private Double valorConsulta;
-
-    // Novos campos
     private String convenio;
     private String idConvenio;
 
@@ -71,14 +67,6 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
         this.horario = horario;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
     public String getObservacoes() {
         return observacoes;
     }
@@ -101,14 +89,6 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
 
     public void setEspecialidade(String especialidade) {
         this.especialidade = especialidade;
-    }
-
-    public Double getValorConsulta() {
-        return valorConsulta;
-    }
-
-    public void setValorConsulta(Double valorConsulta) {
-        this.valorConsulta = valorConsulta;
     }
 
     public String getConvenio() {

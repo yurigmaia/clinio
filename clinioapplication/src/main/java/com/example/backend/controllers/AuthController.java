@@ -56,10 +56,15 @@ public class AuthController {
 
     @PostMapping("/cadastro/clinica")
     public ResponseEntity<Map<String, String>> cadastrarClinica(@RequestBody Clinica clinica) {
-        authService.salvarClinica(clinica);
         Map<String, String> response = new HashMap<>();
-        response.put("message", "Cadastro de clínica realizado com sucesso");
-        return ResponseEntity.ok(response);
+        try {
+            authService.salvarClinica(clinica);
+            response.put("message", "Cadastro de clínica realizado com sucesso");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("message", e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
     @GetMapping("/usuario/existe/{cpf}")

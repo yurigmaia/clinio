@@ -58,8 +58,11 @@ public class AuthService {
         return usuarioRepository.save(usuario);
     }
 
-    // Método para salvar nova clínica sem criptografia de senha
-    public Clinica salvarClinica(Clinica clinica) {
+    // Método para salvar nova clínica com verificação de CNPJ
+    public Clinica salvarClinica(Clinica clinica) throws Exception {
+        if (clinicaExiste(clinica.getCnpj())) {
+            throw new Exception("CNPJ já cadastrado");
+        }
         return clinicaRepository.save(clinica);
     }
 }

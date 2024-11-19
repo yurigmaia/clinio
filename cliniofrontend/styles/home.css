@@ -52,33 +52,66 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .sidebar {
-    width: 12%;
-    background-color: #0a7647;
-    color: white;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between; /* Garante espaçamento entre os itens principais e o botão inferior */
+    height: 100%; /* A sidebar ocupará toda a altura do contêiner pai */
     padding: 20px;
+    background-color: #0a7647; /* Cor de fundo da sidebar */
+    color: white; /* Cor do texto */
 }
 
 .sidebar nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    width: 100%;
 }
 
-.sidebar nav ul li {
-    margin: 20px 0;
+.sidebar nav ul.sidebar-bottom {
+    margin-top: auto; /* Empurra este grupo de itens para o final da sidebar */
 }
 
-.sidebar nav ul li a {
+.btn.sidebar {
+    display: block;
+    padding: 10px 90px;
+    background-color: #66bb6a; /* Cor do botão */
     color: white;
-    text-decoration: none;
-    font-size: 18px;
+    text-decoration: none; /* Remove o sublinhado */
+    border: none;
+    border-radius: 10px; /* Borda arredondada */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center; /* Centraliza o texto dentro do botão */
+    margin: 10px 0;
 }
 
-.sidebar nav ul li a:hover {
-    text-decoration: underline;
+.btn.sidebar:hover {
+    background-color: #57a05f; /* Cor do botão ao passar o mouse */
 }
+
+.patient-info {
+    text-align: center;
+    margin-top: 20px;
+    color: white;
+}
+
+.patient-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.photo-upload {
+    margin-top: 10px;
+    color: white; /* Estiliza o texto do botão de upload */
+}
+
+.patient-info p {
+    margin: 10px 0;
+}
+
 
 .main-content {
     display: flex;
@@ -106,13 +139,14 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 
 .right-container {
     width: 100%;
-    max-width: 400px;
+    max-width: 700px;
     background-color: #E4E4E4;
     border-radius: 25px;
     text-align: center;
     margin-right: 10px;
     padding: 20px;
     overflow-y: auto;
+    justify-content: center;
 }
 
 header {
@@ -157,6 +191,20 @@ header .btn.green {
     font-size: 18px;
     cursor: pointer;
     transition: background-color 0.3s;
+}
+.btn.red2 {
+    background-color: #be2323;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 20px;
+    font-size: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn.red2:hover {
+    background-color: #4a1d1d;
 }
 
 .btn.green {
@@ -280,4 +328,21 @@ form button[type="submit"] {
 
 form button[type="submit"]:hover {
     background-color: #08633c;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+    background-color: rgb(238, 238, 238);
+}
+
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
 }

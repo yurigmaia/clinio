@@ -1,82 +1,73 @@
 package com.example.backend.controllers;
 
-import com.example.backend.dtos.ConsultaRecordDto;
 import com.example.backend.models.ConsultaModel;
 import com.example.backend.services.ConsultaService;
-import jakarta.validation.Valid;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
-
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
-import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import java.util.*;
 
 @RestController
+@RequestMapping("/api/consultas")
 public class ConsultaController {
 
     @Autowired
     private ConsultaService consultaService;
 
-    @PostMapping("/consultas")
-    public ResponseEntity<ConsultaModel> saveConsulta(@RequestBody @Valid ConsultaRecordDto consultaRecordDto) {
-        var consultaModel = new ConsultaModel();
-        BeanUtils.copyProperties(consultaRecordDto, consultaModel);
-        boolean agendada = consultaService.agendarConsulta(consultaModel);
-        if (agendada) {
-            return ResponseEntity.status(HttpStatus.CREATED).body(consultaModel);
-        } else {
-            return ResponseEntity.status(HttpStatus.CONFLICT).body(null);
+    @PostMapping("/agendar")
+    public ResponseEntity<Map<String, String>> agendarConsulta(@RequestBody ConsultaModel consultaModel) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            consultaService.agendarConsulta(consultaModel);
+            response.put("message", "Consulta agendada com sucesso");
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (Exception e) {
+            response.put("message", "Erro ao agendar consulta: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
 
-    @GetMapping("/consultas")
-    public ResponseEntity<List<ConsultaModel>> getAllConsultas() {
+    @GetMapping
+    public ResponseEntity<List<ConsultaModel>> listarConsultas() {
         List<ConsultaModel> consultasList = consultaService.listarConsultas();
-        if (!consultasList.isEmpty()) {
-            for (ConsultaModel consulta : consultasList) {
-                UUID id = consulta.getIdConsulta();
-                consulta.add(linkTo(methodOn(ConsultaController.class).getOneConsulta(id)).withSelfRel());
-            }
-        }
         return ResponseEntity.status(HttpStatus.OK).body(consultasList);
     }
 
-    @GetMapping("/consultas/{id}")
-    public ResponseEntity<Object> getOneConsulta(@PathVariable(value = "id") UUID id) {
-        Optional<ConsultaModel> consulta0 = consultaService.getConsultaById(id);
-        if (consulta0.isEmpty()) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Object> getConsultaById(@PathVariable UUID id) {
+        Optional<ConsultaModel> consultaOptional = consultaService.getConsultaById(id);
+        if (consultaOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(consultaOptional.get());
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Consulta não encontrada");
         }
-        consulta0.get().add(linkTo(methodOn(ConsultaController.class).getAllConsultas()).withRel("Lista de Consultas"));
-        return ResponseEntity.status(HttpStatus.OK).body(consulta0.get());
     }
 
-    @PutMapping("/consultas/{id}")
-    public ResponseEntity<Object> updateConsulta(@PathVariable(value = "id") UUID id,
-                                                 @RequestBody ConsultaRecordDto consultaRecordDto) {
-        Optional<ConsultaModel> consulta0 = consultaService.getConsultaById(id);
-        if (consulta0.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Consulta não encontrada");
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Map<String, String>> deleteConsulta(@PathVariable UUID id) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            consultaService.deletarConsulta(id);
+            response.put("message", "Consulta deletada com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            response.put("message", "Erro ao deletar consulta: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
-        var consultaModel = consulta0.get();
-        BeanUtils.copyProperties(consultaRecordDto, consultaModel);
-        consultaModel.setIdConsulta(id); // Garantir que o ID seja mantido
-        return ResponseEntity.status(HttpStatus.OK).body(consultaService.atualizarConsulta(consultaModel));
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<Map<String, String>> updateConsulta(@PathVariable UUID id, @RequestBody ConsultaModel consultaModel) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            consultaService.atualizarConsulta(id, consultaModel);
+            response.put("message", "Consulta atualizada com sucesso");
+            return ResponseEntity.status(HttpStatus.OK).body(response);
+        } catch (Exception e) {
+            response.put("message", "Erro ao atualizar consulta: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+        }
     }
 
-    @DeleteMapping("/consultas/{id}")
-    public ResponseEntity<Object> deleteConsulta(@PathVariable(value = "id") UUID id) {
-        Optional<ConsultaModel> consulta0 = consultaService.getConsultaById(id);
-        if (consulta0.isEmpty()) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Consulta não encontrada");
-        }
-        consultaService.deletarConsulta(consulta0.get());
-        return ResponseEntity.status(HttpStatus.OK).body("Consulta deletada com sucesso");
-    }
 }
