@@ -16,12 +16,18 @@
         <button class="btn logout" onclick="handleLogout()">Sair</button>
     </div>
     <div class="home-container">
+        
         <!-- Sidebar -->
         <div class="sidebar">
+            <!-- Informações do paciente -->
+        <div class="patient-info">
+            <h3>Bem-vindo(a)</h3>
+            <h3 id="patient-name">ao Clinio!</h3>
+        </div>
             <nav>
                 <ul>
-                    <li><a href="homeclinic.html">Tela inicial</a></li>
-                    <li><a href="consultas.html">Consultas</a></li>
+                    <a class="btn sidebar" href="homeclinic.html">Tela inicial</a>
+                    <a class="btn sidebar" href="consultasclinic.html">Consultas</a>
                 </ul>
             </nav>
         </div>
@@ -96,5 +102,6 @@
     </div>
 
     <script src="../scripts/homeclinic.js"></script>
+    <script src="../scripts/proximasConsultas.js"></script> <!-- Certifique-se de que este script está referenciado corretamente -->
 </body>
 </html>

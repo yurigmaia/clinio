@@ -271,8 +271,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 })
                 .catch(error => console.error('Erro ao carregar consultas:', error));
         }
-    
+        
         // Chamar a função ao carregar a página
         carregarConsultas();
+    });
+    document.addEventListener("DOMContentLoaded", () => {
+        const consultationDetails = {
+            date: "20/11/2024",
+            time: "14:30",
+            professional: "Dr. João Silva"
+        };
+    
+        document.querySelector(".consultation-details").innerHTML = `
+            <p>Data: ${consultationDetails.date}</p>
+            <p>Horário: ${consultationDetails.time}</p>
+            <p>Profissional: ${consultationDetails.professional}</p>
+        `;
     });
     

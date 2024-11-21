@@ -50,6 +50,24 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
     width: 100%;
     height: calc(100vh - 9vh);
 }
+.patient-info {
+    background-color: #197065; /* Fundo diferente para destaque */
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.patient-info h3 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.patient-info p {
+    margin: 5px 0;
+    font-size: 1em;
+}
 
 .sidebar {
     width: 12%;
@@ -64,6 +82,32 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 .sidebar nav ul {
     list-style: none;
     padding: 0;
+    margin: 0;
+    width: 100%;
+    flex-grow: 1; /* Permite que os botões ocupem o espaço necessário */
+    display: flex;
+    align-items: center;
+    flex-direction: column; /* Organiza os botões verticalmente */
+    gap: 0px; /* Espaço entre os botões */
+}
+.btn.sidebar {
+    height: 20px;
+    display: flex;
+    width: 90%;
+    justify-content: end;
+    padding: 10px; /* Tamanho consistente com as informações do paciente */
+    background-color: #66bb6a; /* Cor do botão */
+    color: white;
+    text-decoration: none; /* Remove o sublinhado */
+    border: none;
+    margin-bottom: 10px;
+    border-radius: 10px; /* Borda arredondada */
+    cursor: pointer;
+    transition: background-color 0.3s;
+    text-align: center; /* Centraliza o texto dentro do botão */
+}
+.btn.sidebar:hover {
+    background-color: #57a05f; /* Cor do botão ao passar o mouse */
 }
 
 .sidebar nav ul li {

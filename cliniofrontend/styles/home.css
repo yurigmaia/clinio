@@ -52,6 +52,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 }
 
 .sidebar {
+    width: 12%;
     display: flex;
     flex-direction: column; /* Itens organizados verticalmente */
     justify-content: space-between; /* Espaço entre as informações do paciente e os botões */
@@ -88,6 +89,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
     width: 100%;
     flex-grow: 1; /* Permite que os botões ocupem o espaço necessário */
     display: flex;
+    align-items: center;
     flex-direction: column; /* Organiza os botões verticalmente */
     gap: 0px; /* Espaço entre os botões */
 }
@@ -96,6 +98,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 .btn.sidebar {
     height: 20px;
     display: flex;
+    width: 90%;
     justify-content: end;
     padding: 10px; /* Tamanho consistente com as informações do paciente */
     background-color: #66bb6a; /* Cor do botão */
@@ -140,6 +143,11 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 
 .left-container-bottom {
     flex: 1;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 100%;
 }
 
 .right-container {
@@ -151,6 +159,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
     margin-right: 10px;
     padding: 20px;
     overflow-y: auto;
+    overflow-x: hidden;
     justify-content: center;
 }
 
@@ -169,9 +178,25 @@ header .btn.green {
     margin-left: 30px;
 }
 
+.next-appointment {
+    height: 100%;
+    max-height: 500px;
+    background-color: #E4E4E4;
+    border-radius: 25px;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Distribui os elementos com o espaço necessário */
+    height: 100%; /* Faz com que o `section` ocupe o espaço total disponível */
+    padding: 20px;
+}
+
 .next-appointment h2 {
-    margin-top: 100px;
-    margin-left: 30px;
+    margin-top: 10px;
+    margin-left: 0px;
     font-size: 30px;
 }
 
@@ -183,6 +208,13 @@ header .btn.green {
 .next-appointment .btn {
     margin-right: 10px; /* Espaço entre os botões */
 }
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
+    vertical-align: bottom;
+    margin-top: 100px;
+}
+
 
 .right-container h2 {
     font-size: 25px; /* Tamanho da fonte */
