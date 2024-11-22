@@ -168,7 +168,7 @@ header {
 }
 
 header h1 {
-    font-size: 50px; /* Aumentar o tamanho da fonte */
+    font-size: 5vh; /* Aumentar o tamanho da fonte */
     margin-bottom: 10px; /* Espaço abaixo do título */
     margin-left: 30px;
 }

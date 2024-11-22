@@ -102,5 +102,5 @@ document.addEventListener('DOMContentLoaded', function() {
     carregarConsultas();
 
     // Atualizar as próximas consultas a cada minuto
-    setInterval(carregarConsultas, 60000);
+    setInterval(carregarConsultas, 6000000);
 });

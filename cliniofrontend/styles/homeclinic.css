@@ -71,12 +71,13 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
 
 .sidebar {
     width: 12%;
-    background-color: #065758;
-    color: white;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-direction: column; /* Itens organizados verticalmente */
+    justify-content: space-between; /* Espaço entre as informações do paciente e os botões */
+    height: 88vh; /* A sidebar ocupará toda a altura da tela */
     padding: 20px;
+    background-color: #065758; /* Cor de fundo da sidebar */
+    color: white; /* Cor do texto */
 }
 
 .sidebar nav ul {
@@ -96,7 +97,7 @@ h1, h2, h3, h4, h5, h6, p, button, input, label {
     width: 90%;
     justify-content: end;
     padding: 10px; /* Tamanho consistente com as informações do paciente */
-    background-color: #66bb6a; /* Cor do botão */
+    background-color: #2f7a7b; /* Cor do botão */
     color: white;
     text-decoration: none; /* Remove o sublinhado */
     border: none;
