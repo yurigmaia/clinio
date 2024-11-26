@@ -253,20 +253,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         // Botão para editar consulta
                         const editButton = document.createElement('button');
                         editButton.textContent = 'Editar';
-                        editButton.classList.add('btn', 'green');
+                        editButton.classList.add('btn-edit');
                         editButton.addEventListener('click', function() {
                             openEditModal(consulta);
                         });
                         actionsCell.appendChild(editButton);
-    
+
                         // Botão para deletar consulta
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = 'Desmarcar';
-                        deleteButton.classList.add('btn', 'red');
+                        deleteButton.classList.add('btn-delete');
                         deleteButton.addEventListener('click', function() {
                             deletarConsulta(consulta.idConsulta);
                         });
                         actionsCell.appendChild(deleteButton);
+
                     });
                 })
                 .catch(error => console.error('Erro ao carregar consultas:', error));

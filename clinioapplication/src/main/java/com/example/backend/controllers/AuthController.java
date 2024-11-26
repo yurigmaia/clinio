@@ -10,10 +10,13 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
+
+    private static final Logger LOGGER = Logger.getLogger(AuthController.class.getName());
 
     @Autowired
     private AuthService authService;
@@ -81,5 +84,20 @@ public class AuthController {
         Map<String, Boolean> response = new HashMap<>();
         response.put("existe", existe);
         return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/deletar/{cpf}")
+    public ResponseEntity<Map<String, String>> deletarUsuario(@PathVariable String cpf) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            authService.deletarUsuario(cpf); // Chama o serviço de autenticação para deletar o usuário
+            LOGGER.info("Conta do usuário deletada com sucesso: " + cpf);
+            response.put("message", "Conta deletada com sucesso");
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            LOGGER.severe("Erro ao deletar conta do usuário: " + e.getMessage());
+            response.put("message", "Erro ao deletar conta do usuário: " + e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
     }
 }

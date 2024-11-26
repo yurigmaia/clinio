@@ -6,6 +6,7 @@ import org.springframework.hateoas.RepresentationModel;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Random;
 import java.util.UUID;
 
 @Entity
@@ -26,6 +27,20 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
     private String especialidade;
     private String convenio;
     private String idConvenio;
+    private String codigo;  // Novo campo para o código
+
+    @PrePersist
+    public void prePersist() {
+        this.codigo = gerarCodigoAleatorio();
+    }
+
+    private String gerarCodigoAleatorio() {
+        Random random = new Random();
+        int codigoNumerico = 100000 + random.nextInt(900000); // Gera número entre 100000 e 999999
+        return String.valueOf(codigoNumerico);
+    }
+
+    // Getters e Setters
 
     public UUID getIdConsulta() {
         return idConsulta;
@@ -105,5 +120,13 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
 
     public void setIdConvenio(String idConvenio) {
         this.idConvenio = idConvenio;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 }

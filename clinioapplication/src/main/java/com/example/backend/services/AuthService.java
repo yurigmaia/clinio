@@ -9,9 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.logging.Logger;
 
 @Service
 public class AuthService {
+
+    private static final Logger LOGGER = Logger.getLogger(AuthService.class.getName());
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -64,5 +67,16 @@ public class AuthService {
             throw new Exception("CNPJ já cadastrado");
         }
         return clinicaRepository.save(clinica);
+    }
+
+    // Método para deletar usuário
+    public void deletarUsuario(String cpf) {
+        Optional<Usuario> usuarioOpt = usuarioRepository.findByCpf(cpf);
+        if (usuarioOpt.isPresent()) {
+            usuarioRepository.delete(usuarioOpt.get());
+            LOGGER.info("Usuário deletado: " + cpf);
+        } else {
+            throw new RuntimeException("Usuário não encontrado");
+        }
     }
 }

@@ -28,11 +28,6 @@
             <nav>
                 <ul>
                     <a class="btn sidebar" href="home.html">Tela inicial</a>
-                    <a class="btn sidebar" href="consultas.html">Consultas</a>
-                </ul>
-                <!-- Grupo de botões inferior -->
-                <ul class="sidebar-bottom">
-                    <a class="btn sidebar" id="configuracoesBtn">Configurações</a>
                 </ul>
             </nav>
         </div>
@@ -66,8 +61,6 @@
                         </table>
 
                         <div class="btn-container">
-                            <button class="btn green" id="download-qrcode-btn">Baixar QR Code</button>
-                            <button class="btn red" id="cancel-appointment-btn">Desmarcar</button>
                         </div>
                     </section>
                 </div>
@@ -181,26 +174,24 @@
     </div>
     <!-- Modal -->
     <div id="pacienteModal" class="modal">
-        <div class="modal-content">
+        <div class="config-modal-content">
             <span class="close">&times;</span>
-            <h2>Informações do Paciente</h2>
-            <form id="pacienteForm">
-                <label for="nome">Nome:</label>
-                <input type="text" id="nome" name="nome" required><br>
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br>
-                <label for="telefone">Telefone:</label>
-                <input type="tel" id="telefone" name="telefone" required><br>
-                <label for="endereco">Endereço:</label>
-                <input type="text" id="endereco" name="endereco" required><br>
-                <button type="submit">Salvar</button>
-            </form>
+            <h2>Conta</h2>
             <button id="deletarContaBtn">Deletar Conta</button>
         </div>
     </div>
-
+    <!-- Modal Código -->
+    <div id="codigoModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Código da Consulta</h2>
+            <div id="codigoConsulta" class="codigo-grande"></div>
+        </div>
+    </div>
     <script src="../scripts/home.js"></script>
     <script src="../scripts/proximaConsulta.js"></script>
     <script src="../scripts/modalConfig.js"></script>
+    <script src="../scripts/deletarConta.js"></script>
+    <script src="../scripts/modalCodigo.js"></script>
 </body>
 </html>

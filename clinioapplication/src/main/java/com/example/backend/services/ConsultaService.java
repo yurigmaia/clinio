@@ -7,10 +7,11 @@ import com.example.backend.repositories.MedicoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Logger;
 
@@ -25,7 +26,7 @@ public class ConsultaService {
     @Autowired
     private MedicoRepository medicoRepository;
 
-    public void agendarConsulta(ConsultaModel consulta) throws Exception {
+    public ConsultaModel agendarConsulta(ConsultaModel consulta) throws Exception {
         LOGGER.info("Iniciando agendamento de consulta...");
 
         // Verificação de disponibilidade de horário
@@ -49,8 +50,18 @@ public class ConsultaService {
             throw new Exception("Médico não encontrado");
         }
 
-        consultaRepository.save(consulta);
+        // Geração do código aleatório de 6 dígitos
+        consulta.setCodigo(gerarCodigoAleatorio());
+
+        ConsultaModel consultaSalva = consultaRepository.save(consulta);
         LOGGER.info("Consulta agendada com sucesso.");
+        return consultaSalva;
+    }
+
+    private String gerarCodigoAleatorio() {
+        Random random = new Random();
+        int codigoNumerico = 100000 + random.nextInt(900000); // Gera número entre 100000 e 999999
+        return String.valueOf(codigoNumerico);
     }
 
     public void deletarConsulta(UUID id) throws Exception {
@@ -68,6 +79,7 @@ public class ConsultaService {
     public Optional<ConsultaModel> getConsultaById(UUID id) {
         return consultaRepository.findById(id);
     }
+
     public void atualizarConsulta(UUID id, ConsultaModel consultaAtualizada) throws Exception {
         Optional<ConsultaModel> consultaOptional = consultaRepository.findById(id);
         if (consultaOptional.isPresent()) {
@@ -86,4 +98,13 @@ public class ConsultaService {
         }
     }
 
+    public Optional<ConsultaModel> getProximaConsulta() {
+        List<ConsultaModel> consultas = consultaRepository.findAll();
+        return consultas.stream()
+                .filter(consulta -> {
+                    LocalDateTime consultaDataHora = LocalDateTime.of(consulta.getDia(), consulta.getHorario());
+                    return consultaDataHora.isAfter(LocalDateTime.now());
+                })
+                .min(Comparator.comparing(consulta -> LocalDateTime.of(consulta.getDia(), consulta.getHorario())));
+    }
 }

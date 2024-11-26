@@ -20,8 +20,9 @@ public class ConsultaController {
     public ResponseEntity<Map<String, String>> agendarConsulta(@RequestBody ConsultaModel consultaModel) {
         Map<String, String> response = new HashMap<>();
         try {
-            consultaService.agendarConsulta(consultaModel);
+            ConsultaModel consultaSalva = consultaService.agendarConsulta(consultaModel);
             response.put("message", "Consulta agendada com sucesso");
+            response.put("codigo", consultaSalva.getCodigo());
             return ResponseEntity.status(HttpStatus.CREATED).body(response);
         } catch (Exception e) {
             response.put("message", "Erro ao agendar consulta: " + e.getMessage());
@@ -45,6 +46,14 @@ public class ConsultaController {
         }
     }
 
+    @GetMapping("/proxima")
+    public ResponseEntity<ConsultaModel> getProximaConsulta() {
+        Optional<ConsultaModel> proximaConsulta = consultaService.getProximaConsulta();
+        return proximaConsulta
+                .map(consulta -> ResponseEntity.status(HttpStatus.OK).body(consulta))
+                .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).body(null));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Map<String, String>> deleteConsulta(@PathVariable UUID id) {
         Map<String, String> response = new HashMap<>();
@@ -57,6 +66,7 @@ public class ConsultaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
+
     @PutMapping("/{id}")
     public ResponseEntity<Map<String, String>> updateConsulta(@PathVariable UUID id, @RequestBody ConsultaModel consultaModel) {
         Map<String, String> response = new HashMap<>();
@@ -69,5 +79,4 @@ public class ConsultaController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
         }
     }
-
 }
