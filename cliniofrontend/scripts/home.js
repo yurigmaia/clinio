@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 data.forEach(medico => {
                     const option = document.createElement('option');
                     option.value = medico.nome;
-                    option.textContent = medico.nome;
+                    option.textContent = `${medico.nome} - ${medico.especialidade}`;
                     medicoSelect.appendChild(option);
                 });
             })
