@@ -1,15 +1,16 @@
 package com.example.backend.services;
 
-import com.example.backend.models.Usuario;
-import com.example.backend.models.Clinica;
-import com.example.backend.repositories.UsuarioRepository;
-import com.example.backend.repositories.ClinicaRepository;
-import com.example.backend.utils.CPFUtils;
+import java.util.Optional;
+import java.util.logging.Logger;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-import java.util.logging.Logger;
+import com.example.backend.models.Clinica;
+import com.example.backend.models.Usuario;
+import com.example.backend.repositories.ClinicaRepository;
+import com.example.backend.repositories.UsuarioRepository;
+import com.example.backend.utils.CPFUtils;
 
 @Service
 public class AuthService {
@@ -22,7 +23,7 @@ public class AuthService {
     @Autowired
     private ClinicaRepository clinicaRepository;
 
-    // Autenticação para usuários (pacientes)
+    // autenticação para usuários (pacientes)
     public boolean autenticarUsuario(String cpf, String password) {
         if (!CPFUtils.isValidCPF(cpf)) {
             return false; // CPF inválido
@@ -36,12 +37,12 @@ public class AuthService {
         return false;
     }
 
-    // Verificação de existência de usuário
+    // verificação de existência de usuário
     public boolean usuarioExiste(String cpf) {
         return usuarioRepository.findByCpf(cpf).isPresent();
     }
 
-    // Autenticação para clínicas
+    // autenticação para clínicas
     public boolean autenticarClinica(String cnpj, String password) {
         Optional<Clinica> clinicaOpt = clinicaRepository.findByCnpj(cnpj);
         if (clinicaOpt.isPresent()) {
@@ -51,17 +52,17 @@ public class AuthService {
         return false;
     }
 
-    // Verificação de existência de clínica
+    // verificação de existência de clínica
     public boolean clinicaExiste(String cnpj) {
         return clinicaRepository.findByCnpj(cnpj).isPresent();
     }
 
-    // Método para salvar novo usuário sem criptografia de senha
+    // método para salvar novo usuário sem criptografia de senha
     public Usuario salvarUsuario(Usuario usuario) {
         return usuarioRepository.save(usuario);
     }
 
-    // Método para salvar nova clínica com verificação de CNPJ
+    // método para salvar nova clínica com verificação de CNPJ
     public Clinica salvarClinica(Clinica clinica) throws Exception {
         if (clinicaExiste(clinica.getCnpj())) {
             throw new Exception("CNPJ já cadastrado");
@@ -69,7 +70,7 @@ public class AuthService {
         return clinicaRepository.save(clinica);
     }
 
-    // Método para deletar usuário
+    // método para deletar usuário
     public void deletarUsuario(String cpf) {
         Optional<Usuario> usuarioOpt = usuarioRepository.findByCpf(cpf);
         if (usuarioOpt.isPresent()) {

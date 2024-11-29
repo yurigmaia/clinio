@@ -1,12 +1,5 @@
 package com.example.backend.services;
 
-import com.example.backend.models.ConsultaModel;
-import com.example.backend.models.Medico;
-import com.example.backend.repositories.ConsultaRepository;
-import com.example.backend.repositories.MedicoRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.Comparator;
 import java.util.List;
@@ -14,6 +7,14 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
 import java.util.logging.Logger;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.backend.models.ConsultaModel;
+import com.example.backend.models.Medico;
+import com.example.backend.repositories.ConsultaRepository;
+import com.example.backend.repositories.MedicoRepository;
 
 @Service
 public class ConsultaService {
@@ -29,7 +30,7 @@ public class ConsultaService {
     public ConsultaModel agendarConsulta(ConsultaModel consulta) throws Exception {
         LOGGER.info("Iniciando agendamento de consulta...");
 
-        // Verificação de disponibilidade de horário
+        // verificação de disponibilidade de horário
         if (consultaRepository.existsByMedicoAndDiaAndHorario(consulta.getMedico(), consulta.getDia(), consulta.getHorario())) {
             LOGGER.warning("Horário já agendado para este médico.");
             throw new Exception("Horário já agendado para este médico");
@@ -40,7 +41,7 @@ public class ConsultaService {
             throw new Exception("Horário já agendado para este paciente");
         }
 
-        // Buscar especialidade do médico
+        // buscar especialidade do médico
         Optional<Medico> medicoOpt = medicoRepository.findByNome(consulta.getMedico());
         if (medicoOpt.isPresent()) {
             consulta.setEspecialidade(medicoOpt.get().getEspecialidade());
@@ -50,7 +51,7 @@ public class ConsultaService {
             throw new Exception("Médico não encontrado");
         }
 
-        // Geração do código aleatório de 6 dígitos
+        // geração do código aleatório de 6 dígitos
         consulta.setCodigo(gerarCodigoAleatorio());
 
         ConsultaModel consultaSalva = consultaRepository.save(consulta);
@@ -60,7 +61,7 @@ public class ConsultaService {
 
     private String gerarCodigoAleatorio() {
         Random random = new Random();
-        int codigoNumerico = 100000 + random.nextInt(900000); // Gera número entre 100000 e 999999
+        int codigoNumerico = 100000 + random.nextInt(900000); // gera número entre 100000 e 999999
         return String.valueOf(codigoNumerico);
     }
 

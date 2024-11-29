@@ -2,20 +2,20 @@ package com.example.backend.utils;
 
 public class CPFUtils {
     public static boolean isValidCPF(String cpf) {
-        // Remove caracteres não numéricos
+        // remove caracteres não numéricos
         cpf = cpf.replaceAll("\\D", "");
 
-        // Verifica se o CPF tem 11 dígitos
+        // verifica se o CPF tem 11 dígitos
         if (cpf.length() != 11) {
             return false;
         }
 
-        // Verifica se todos os dígitos são iguais
+        // verifica se todos os dígitos são iguais
         if (cpf.matches("(\\d)\\1{10}")) {
             return false;
         }
 
-        // Calcula os dígitos verificadores
+        // calcula os dígitos verificadores
         int[] pesos1 = {10, 9, 8, 7, 6, 5, 4, 3, 2};
         int[] pesos2 = {11, 10, 9, 8, 7, 6, 5, 4, 3, 2};
 
@@ -38,7 +38,7 @@ public class CPFUtils {
             segundoDigitoVerificador = 0;
         }
 
-        // Verifica se os dígitos verificadores estão corretos
+        // verifica se os dígitos verificadores estão corretos
         return cpf.charAt(9) - '0' == primeiroDigitoVerificador && cpf.charAt(10) - '0' == segundoDigitoVerificador;
     }
 }

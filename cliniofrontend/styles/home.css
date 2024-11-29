@@ -168,8 +168,8 @@ header {
 }
 
 header h1 {
-    font-size: 5vh; /* Aumentar o tamanho da fonte */
-    margin-bottom: 10px; /* Espaço abaixo do título */
+    font-size: 5vh;
+    margin-bottom: 10px;
     margin-left: 30px;
 }
 
@@ -261,8 +261,6 @@ header .btn.green {
     background-color: #4a1d1d;
 }
 
-/* Estilos para o Modal */
-/* Estilos para o Modal */
 .modal {
     display: none;
     justify-content: center;

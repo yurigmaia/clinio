@@ -1,13 +1,19 @@
 package com.example.backend.models;
 
-import jakarta.persistence.*;
-import org.springframework.hateoas.RepresentationModel;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Random;
 import java.util.UUID;
+
+import org.springframework.hateoas.RepresentationModel;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "TB_CONSULTAS")
@@ -27,7 +33,7 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
     private String especialidade;
     private String convenio;
     private String idConvenio;
-    private String codigo;  // Novo campo para o código
+    private String codigo;
 
     @PrePersist
     public void prePersist() {
@@ -36,7 +42,7 @@ public class ConsultaModel extends RepresentationModel<ConsultaModel> implements
 
     private String gerarCodigoAleatorio() {
         Random random = new Random();
-        int codigoNumerico = 100000 + random.nextInt(900000); // Gera número entre 100000 e 999999
+        int codigoNumerico = 100000 + random.nextInt(900000); // gera número entre 100000 e 999999
         return String.valueOf(codigoNumerico);
     }
 

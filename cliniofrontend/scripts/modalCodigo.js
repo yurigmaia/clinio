@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let proximaConsultaCodigo = null; // Variável para armazenar o código da próxima consulta
 
     function mostrarProximaConsulta() {
-        fetch('http://localhost:8080/api/consultas/proxima') // Certifique-se de que o endpoint está correto aqui
+        fetch('http://localhost:8080/api/consultas/proxima')
             .then(response => response.json())
             .then(proximaConsulta => {
                 console.log('Resposta da API:', proximaConsulta); // Log da resposta da API

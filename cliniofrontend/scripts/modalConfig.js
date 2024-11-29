@@ -24,7 +24,6 @@ document.getElementById("pacienteForm").addEventListener("submit", function(even
     var email = document.getElementById("email").value;
     var telefone = document.getElementById("telefone").value;
     var endereco = document.getElementById("endereco").value;
-    // Faça a lógica de atualização aqui
     console.log("Informações do paciente atualizadas:", { nome, email, telefone, endereco });
     modal.style.display = "none";
 });
@@ -32,7 +31,6 @@ document.getElementById("pacienteForm").addEventListener("submit", function(even
 // Lidar com a deleção da conta
 document.getElementById("deletarContaBtn").addEventListener("click", function() {
     if (confirm("Tem certeza que deseja deletar a conta?")) {
-        // Faça a lógica de deleção aqui
         console.log("Conta deletada");
         modal.style.display = "none";
     }

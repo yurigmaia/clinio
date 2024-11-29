@@ -21,9 +21,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Função para deletar a conta do usuário
     deletarContaBtn.addEventListener('click', function() {
         if (confirm("Tem certeza que deseja deletar a conta?")) {
-            const cpf = '12345678900'; // Substitua pelo CPF do usuário logado
+            const cpf = '12345678900';
             
-            // Substitua a URL abaixo com a URL correta da sua API
             fetch(`http://localhost:8080/api/auth/deletar/${cpf}`, {
                 method: 'DELETE',
                 headers: {
